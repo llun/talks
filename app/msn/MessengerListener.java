@@ -22,11 +22,13 @@ public class MessengerListener implements MsnMessengerListener {
 
   public void loginCompleted(MsnMessenger messenger) {
     MsnOwner owner = messenger.getOwner();
-    JPAPlugin.startTx(true);
+    JPAPlugin.startTx(false);
     Group group = Group.find("byEmail", owner.getEmail().getEmailAddress())
         .first();
+    group.online = true;
+    group.save();
     JPAPlugin.closeTx(false);
-
+    
     owner.setDisplayName(group.display);
 
     Logger.info("%s Login complete", owner.getEmail());

@@ -367,7 +367,7 @@ public class Messenger extends BasicMessenger {
   public class RateThread implements Runnable {
     private Vector waitingMessages = new Vector();
 
-    private int NUMBER_MESSAGES = 8;
+    private int NUMBER_MESSAGES = 30;
     private long MAX_SECONDS = 55;
 
     Vector times = new Vector(NUMBER_MESSAGES - 1);

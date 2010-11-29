@@ -18,6 +18,7 @@ import msn.MessageListener;
 import msn.Messenger;
 import msn.MessengerListener;
 import net.sf.jml.Email;
+import net.sf.jml.MsnConnectionType;
 import net.sf.jml.MsnContact;
 import net.sf.jml.MsnMessenger;
 import net.sf.jml.MsnProtocol;
@@ -37,12 +38,15 @@ public class Group extends Model {
   @JoinColumn(name = "owner_id")
   public User owner;
 
+  public Boolean online;
+
   public Group(String display, String email, String password, User owner) {
     this.email = email;
     this.password = password;
     this.owner = owner;
 
     this.display = display;
+    this.online = false;
   }
 
   public static Group add(String display, String email, String password,
@@ -109,6 +113,9 @@ public class Group extends Model {
     if (messengers.containsKey(id)) {
       MsnMessenger messenger = messengers.get(id);
       messenger.logout();
+      
+      online = false;
+      save();
     }
   }
 
@@ -148,13 +155,8 @@ public class Group extends Model {
   }
 
   public MsnUserStatus status() {
-    MsnUserStatus status = MsnUserStatus.OFFLINE;
-
-    if (messengers.containsKey(id)) {
-      MsnMessenger messenger = messengers.get(id);
-      status = messenger.getOwner().getStatus();
-    }
-
+    MsnUserStatus status = online ? MsnUserStatus.ONLINE
+        : MsnUserStatus.OFFLINE;
     return status;
   }
 
