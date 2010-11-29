@@ -1,5 +1,7 @@
 package msn;
 
+import java.util.Date;
+
 import models.Group;
 import models.MessageLog;
 import net.sf.jml.MsnContact;
@@ -73,10 +75,6 @@ public class MessageListener implements MsnMessageListener {
     }
   }
 
-  public void offlineMessageReceived(String arg0, String arg1, String arg2,
-      MsnContact arg3) {
-  }
-
   public void p2pMessageReceived(MsnSwitchboard switchboard,
       MsnP2PMessage message, MsnContact contact) {
     MsnFileDeclineMessage declineMessage = new MsnFileDeclineMessage();
@@ -84,11 +82,17 @@ public class MessageListener implements MsnMessageListener {
     messenger.sendMessage(contact.getEmail(), declineMessage);
   }
 
-  public void systemMessageReceived(MsnMessenger arg0, MsnSystemMessage arg1) {
+  public void systemMessageReceived(MsnMessenger messenger,
+      MsnSystemMessage message) {
   }
 
-  public void unknownMessageReceived(MsnSwitchboard arg0,
-      MsnUnknownMessage arg1, MsnContact arg2) {
+  public void unknownMessageReceived(MsnSwitchboard switchboard,
+      MsnUnknownMessage message, MsnContact contact) {
+  }
+
+  public void offlineMessageReceived(String body, String contentType,
+      String encoding, Date date, MsnContact contact) {
+
   }
 
 }
