@@ -132,7 +132,7 @@ public class Group extends Model {
 
       if (alias == null) {
         alias = new Alias(this, email, name);
-      } else if (!alias.name.equals(name)) {
+      } else {
         alias.name = name;
       }
 
