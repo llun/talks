@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Login' /}
+
+<div id="genericform">
+  
+  <h3>&{'signin'}</h3>
+  
+  <form name="comment-form" action="@{Secure.authenticate}" method="post" accept-charset="utf-8">
+    <p>
+      #{field 'username'}
+      <input type="text" name="${field.name}" id="${field.id}" class="input-text" size="22">
+      <label for="${field.name}">&{'username'}</label>
+      #{/field}
+    </p>
+    
+    <p>
+      #{field 'password'}
+      <input type="password" name="${field.name}" id="${field.id}" class="input-text" size="22">
+      <label for="${field.name}">&{'password'}</label>
+      #{/field}
+    </p>
+    
+    <p class="input-submit"><input type="submit" value="&{'signin'}"></p>
+  </form>
+</div>

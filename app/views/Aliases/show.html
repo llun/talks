@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Group' /}
+
+<div id="genericform">
+  
+  <h3>Alias for ${alias.email}</h3>
+  
+  <form name="comment-form" action="@{Aliases.update()}" method="post" accept-charset="utf-8">
+
+    #{field 'groupID'}
+      <input type="hidden" name="${field.name}" value="${group.id}" id="${field.name}">
+    #{/field}
+    
+    #{field 'email'}
+      <input type="hidden" name="${field.name}" value="${alias.email}" id="${field.name}">
+    #{/field}
+    
+    #{field 'name'}
+    <p>
+      <input type="text" name="${field.name}" id="${field.id}" class="input-text" size="22">
+      <label for="email">&{'alias'}</label>
+    </p>
+    #{/field}
+    
+    <p class="input-submit"><input type="submit" value="&{'rename'}"></p>
+  </form>
+</div>

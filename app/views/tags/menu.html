@@ -1,0 +1,6 @@
+#{if controllers.Security.isConnected()}
+<span class="menu"><a href="@{Users.profile()}">Profile</a> | <a href="@{Secure.logout()}">Sign out</a></span>
+#{/if}
+#{else}
+<span class="menu"><a href="@{Secure.login()}">Sign in</a></span>
+#{/else}

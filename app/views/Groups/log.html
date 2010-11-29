@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Log' /}
+
+<div class="post entry">
+  
+  <h2>Log</h2>
+  
+  #{if totalPage > 1}
+    
+    <span class="menu">
+      #{if page != 1}
+      <a href="@{Groups.log(group.id, page - 1)}">Prev</a>
+      #{/if}
+      
+      #{if page > 1 && page < totalPage}
+      -
+      #{/if}
+      
+      #{if page < totalPage}
+      <a href="@{Groups.log(group.id, page + 1)}">Next</a>
+      #{/if}
+    </span>
+    
+  #{/if}
+  
+  <ul>
+  #{list items:logs.keySet(), as:'time'}
+    <li>
+      <h3>${time}</h3>
+      
+      #{list items:logs.get(time), as:'log'}
+      <p>${log.message}</p>
+      #{/list}
+        
+    </li>
+  #{/list}
+  </ul>
+  
+</div>

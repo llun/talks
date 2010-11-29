@@ -1,0 +1,63 @@
+#{extends 'main.html' /}
+#{set title:'Group' /}
+
+#{ifnot user.isOverQuota()}
+<div id="genericform">
+  
+  <h3>Add Group</h3>
+  
+  <form name="comment-form" action="@{Groups.add()}" method="post" accept-charset="utf-8">
+    
+    #{field 'display'}
+    <p>
+      <input type="text" name="${field.name}" id="${field.id}" class="input-text" size="22">
+      <label for="email">&{'display'}</label>
+    </p>
+    #{/field}
+    
+    #{field 'email'}
+    <p>
+      <input type="text" name="${field.name}" id="${field.id}" class="input-text" size="22">
+      <label for="email">&{'email'}</label>
+    </p>
+    #{/field}
+    
+    #{field 'password'}
+    <p>
+      <input type="password" name="${field.name}" id="password" class="input-text" size="22">
+      <label for="password">&{'password'}</label>
+    </p>
+    #{/field}
+    
+    <p class="input-submit"><input type="submit" value="&{'add'}"></p>
+  </form>
+</div>
+#{/ifnot}
+
+<div class="post entry">
+  
+  <h2>Groups</h2>
+  
+  <ul>
+  #{list items:groups, as:'group'}
+    <li>
+      <a href="@{Groups.contacts(group.id)}">${group.display}</a> 
+      <a href="@{Groups.toggle(group.id)}">(${group.status()})</a> - 
+      <a href="@{Groups.remove(group.id)}">delete</a> |
+      <a href="@{Groups.log(group.id, 1)}">log</a>
+    </li>
+  #{/list}
+  </ul>
+  
+  #{if liveGroup.size() > 0}
+  <ul>
+  #{list items:liveGroup, as:'group'}
+    <li>
+      <a href="@{Aliases.show(group.id, user.email)}">${group.display}</a> 
+      (${group.status()}) |
+      <a href="@{Groups.log(group.id, 1)}">log</a>
+    </li>
+  #{/list}
+  </ul>
+  #{/if}
+</div>

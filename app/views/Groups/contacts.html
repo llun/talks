@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Contacts' /}
+
+<div class="post entry">
+  
+  <h2>Contacts</h2>
+  
+  <p>
+    <ul>
+    #{list items:aliases, as:'alias'}
+      <li>
+        <a href="@{Aliases.show(group.id, alias.email)}">${alias.email}</a> ( ${alias.name} )
+      </li>
+    #{/list}
+    </ul>
+  </p>
+</div>

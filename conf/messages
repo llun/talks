@@ -1,0 +1,15 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+register=Register
+user-information=User Information
+change-password=Change Password
+signin=Sign in
+username=Username
+password=Password
+confirm=Confirm
+email=Email
+
+display=Display name
+
+mail.verify.subject = Please verify your account

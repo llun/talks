@@ -1,0 +1,1 @@
+Open link to verify your account: ${verify}
