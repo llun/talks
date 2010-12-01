@@ -183,7 +183,7 @@ public class Group extends Model {
 
   public Map<String, List<MessageLog>> log(int page, boolean reverse) {
     List<MessageLog> logs = MessageLog.find(
-        "groupEmail like ? order by id desc", this.email).fetch(page, 10);
+        "groupEmail like ? order by id desc", this.email).fetch(page, 50);
     if (!reverse) {
       Collections.reverse(logs);
     }
